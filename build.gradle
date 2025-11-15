@@ -16,6 +16,7 @@ repositories {
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
+	mavenCentral()
 }
 
 loom {
@@ -38,6 +39,12 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+	// JSON serialization
+	implementation 'com.google.code.gson:gson:2.10.1'
+
+	// the fabric api
+	modImplementation files('libs/fabric-api-0.138.3+1.21.10.jar')
 	
 }
 
@@ -50,7 +57,7 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach {
-	it.options.release = 21
+    it.options.release = 17
 }
 
 java {
@@ -59,8 +66,20 @@ java {
 	// If you remove this line, sources will not be generated.
 	withSourcesJar()
 
-	sourceCompatibility = JavaVersion.VERSION_21
-	targetCompatibility = JavaVersion.VERSION_21
+	sourceCompatibility = JavaVersion.VERSION_17
+	targetCompatibility = JavaVersion.VERSION_17
+
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+// Avoid duplicate source file entries between main and client source sets in sourcesJar
+tasks.named('sourcesJar', Jar) {
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+	// In case both source sets contain a file with the same relative path, exclude duplicates.
+	// We specifically exclude the common placeholder to avoid clashing with the client TickHandler.
+	exclude('**/com/caiga/TickHandler.java')
 }
 
 jar {
