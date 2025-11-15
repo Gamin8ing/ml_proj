@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "caiga",
+	"version": "${version}",
+	"name": "CAIGA",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/caiga/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.caiga.CAIGA"
+		],
+		"client": [
+			"com.caiga.CAIGAClient"
+		]
+	},
+	"mixins": [
+		"caiga.mixins.json",
+		{
+			"config": "caiga.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.17.3",
+		"minecraft": "~1.21.10",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
