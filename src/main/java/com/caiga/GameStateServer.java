@@ -9,6 +9,9 @@ import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.InputStream;
+// Client classes are referenced reflectively to avoid classloading on dedicated server environments
+import java.lang.reflect.Method;
 import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
 
@@ -53,7 +56,8 @@ public class GameStateServer {
             } catch (Exception ignored) { }
             respondJson(exchange, store.getRecentEvents(n));
         }));
-        this.server.setExecutor(java.util.concurrent.Executors.newCachedThreadPool());
+    this.server.createContext("/tip", wrap(this::handleTip));
+    this.server.setExecutor(java.util.concurrent.Executors.newCachedThreadPool());
     }
 
     public static synchronized void startSingleton(int port, GameStateStore store) throws IOException {
@@ -72,6 +76,62 @@ public class GameStateServer {
         try (OutputStream os = exchange.getResponseBody()) {
             os.write(body);
         }
+    }
+
+    private void handleTip(HttpExchange exchange) throws IOException {
+        if (!"POST".equalsIgnoreCase(exchange.getRequestMethod())) {
+            // Method not allowed
+            exchange.getResponseHeaders().add("Allow", "POST");
+            byte[] body = "{\"error\":\"Use POST\"}".getBytes(StandardCharsets.UTF_8);
+            exchange.sendResponseHeaders(405, body.length);
+            try (OutputStream os = exchange.getResponseBody()) { os.write(body); }
+            return;
+        }
+        String raw = readBody(exchange.getRequestBody());
+        String msg = null;
+        try {
+            var jsonObj = com.google.gson.JsonParser.parseString(raw).getAsJsonObject();
+            if (jsonObj.has("message")) msg = jsonObj.get("message").getAsString();
+            else if (jsonObj.has("tip")) msg = jsonObj.get("tip").getAsString();
+        } catch (Exception ignored) {}
+
+        if (msg == null || msg.isBlank()) {
+            respondJson(exchange, java.util.Map.of("error","Missing 'message' or 'tip' field"));
+            return;
+        }
+
+        // Schedule chat send on client thread if possible
+        // Use reflection to avoid compile-time dependency in common source set
+        try {
+            Class<?> mcClass = Class.forName("net.minecraft.client.MinecraftClient");
+            Method getInstance = mcClass.getDeclaredMethod("getInstance");
+            Object mc = getInstance.invoke(null);
+            if (mc != null) {
+                Method execute = mcClass.getMethod("execute", Runnable.class);
+                Object player = mcClass.getField("player").get(mc); // public field
+                if (player != null) {
+                    String finalMsg = msg;
+                    execute.invoke(mc, (Runnable) () -> {
+                        try {
+                            Object curPlayer = mcClass.getField("player").get(mc);
+                            if (curPlayer != null) {
+                                Class<?> textClass = Class.forName("net.minecraft.text.Text");
+                                Method literal = textClass.getMethod("literal", String.class);
+                                Object textObj = literal.invoke(null, "[TIP] " + finalMsg);
+                                curPlayer.getClass().getMethod("sendMessage", textClass).invoke(curPlayer, textObj);
+                            }
+                        } catch (Exception ignored) {}
+                    });
+                }
+            }
+        } catch (Exception ignored) {}
+        respondJson(exchange, java.util.Map.of("status","ok","echo",msg));
+    }
+
+    private static String readBody(InputStream is) throws IOException {
+        if (is == null) return "";
+        byte[] buf = is.readAllBytes();
+        return new String(buf, StandardCharsets.UTF_8);
     }
 
     private static HttpHandler wrap(ThrowingHandler h) {

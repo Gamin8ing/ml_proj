@@ -3,7 +3,7 @@
 A client‑side Fabric mod (Java 17 toolchain, Gradle 8.8, Loom 1.7.x) that exposes a live REST API with the player’s game state and writes structured logs (CSV + JSONL) for ML training.
 
 - REST server: http://localhost:8080
-- Endpoints: `/state`, `/inventory`, `/events?n=20`
+- Endpoints: `/state`, `/inventory`, `/events?n=20`, **POST** `/tip`
 - Logs: `config/caiga/state.csv` and `config/caiga/state.jsonl` (about once per second)
 
 ## Requirements
@@ -44,6 +44,7 @@ Notes:
 - GET `/state` – Full game state snapshot (see Data model)
 - GET `/inventory` – Short inventory summary `{ logs, planks, foods }`
 - GET `/events?n=20` – Last N events (default N=20)
+- POST `/tip` – Send a tip/chat message into the client. Body JSON must include `"message"` or `"tip"`.
 
 Examples:
 
@@ -51,6 +52,8 @@ Examples:
 curl -s http://localhost:8080/state | jq .
 curl -s http://localhost:8080/inventory | jq .
 curl -s "http://localhost:8080/events?n=50" | jq .
+curl -s -X POST -H 'Content-Type: application/json' \
+  -d '{"message":"Remember to eat!"}' http://localhost:8080/tip | jq .
 ```
 
 ### Example `/state` response
@@ -107,14 +110,14 @@ Updated every client tick by `TickHandler` and stored in `GameStateStore`.
 - Location: `config/caiga/`
   - `state.csv` – compact tabular log with key columns:
     - `timestamp,x,y,z,health,hunger,biome,dimension,blockUnderCrosshair,isNight,movementVector,inventoryCounts,lastEvent`
-  - `state.jsonl` – one JSON snapshot per line (pretty fast to parse)
+  - `state.jsonl` – one JSON snapshot per line (recent events omitted for size)
 
 ## Configuration ideas (future)
 
 - Toggle logging on/off
 - Change log frequency and output directory
 - Change HTTP port (default 8080)
-- Add POST endpoints to mark/label moments during play
+- Add POST endpoints to mark/label moments during play (existing: `/tip`)
 
 ## Troubleshooting
 
@@ -136,3 +139,28 @@ Updated every client tick by `TickHandler` and stored in `GameStateStore`.
 ---
 
 If you want me to add a small config file (e.g., `config/caiga/config.json`) to control logging frequency and port, say the word and I’ll wire it in.
+
+### POST /tip details
+
+Request:
+
+```json
+{ "message": "Drink a potion before the fight" }
+```
+
+or
+
+```json
+{ "tip": "Low health detected, retreat" }
+```
+
+Response:
+
+```json
+{ "status": "ok", "echo": "Drink a potion before the fight" }
+```
+
+Behavior:
+- Message is prefixed with `[TIP]` and sent to in‑game chat.
+- Executed on the client thread; ignored if player not present.
+- Invalid / missing body returns `{"error":"Missing 'message' or 'tip' field"}`.
