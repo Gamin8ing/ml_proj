@@ -27,7 +27,8 @@ public class FileLogger {
     }
 
     public synchronized void append(GameStateStore store) {
-        GameStateStore.Snapshot s = store.snapshot();
+        // Use a slim snapshot (no recentEvents) to keep JSONL compact
+        GameStateStore.Snapshot s = store.snapshotLimited(0);
         String timestamp = TS_FMT.format(Instant.now());
 
         // Compose CSV line

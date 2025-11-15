@@ -135,17 +135,23 @@ public class TickHandler {
         // Simple inventory counts
         int logs = 0, planks = 0, foods = 0;
         int totalItems = 0;
+        java.util.Map<String, Integer> counts = new java.util.HashMap<>();
+        java.util.List<GameStateStore.SlotItem> slots = new java.util.ArrayList<>();
         for (int i = 0; i < player.getInventory().size(); i++) {
             ItemStack stack = player.getInventory().getStack(i);
             if (stack == null || stack.isEmpty()) continue;
             Item item = stack.getItem();
             int c = stack.getCount();
             totalItems += c;
+            String id = Registries.ITEM.getId(item).toString();
+            counts.put(id, counts.getOrDefault(id, 0) + c);
+            slots.add(new GameStateStore.SlotItem(i, id, c));
             if (LOGS.contains(item)) logs += c;
             if (PLANKS.contains(item)) planks += c;
             if (FOODS.contains(item)) foods += c;
         }
         store.updateInventorySummary(logs, planks, foods);
+        store.updateInventoryFull(counts, slots);
 
         // Item pickup heuristic: total items increased
         if (totalItems > lastTotalItems) {

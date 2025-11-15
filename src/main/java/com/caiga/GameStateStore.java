@@ -30,6 +30,7 @@ public class GameStateStore {
     private String selectedItem; // namespaced item id or null
 
     private InventorySummary inventorySummary = new InventorySummary(0, 0, 0);
+    private InventoryFull inventoryFull = new InventoryFull();
 
     // Event ring buffer
     private final Deque<GameEvent> recentEvents;
@@ -58,7 +59,29 @@ public class GameStateStore {
         s.movementVector = new MovementVector(movementVector.dx, movementVector.dy, movementVector.dz);
         s.selectedItem = selectedItem;
         s.inventory = new InventorySummary(inventorySummary.logs, inventorySummary.planks, inventorySummary.foods);
+        s.inventoryFull = inventoryFull.copy();
         s.recentEvents = new ArrayList<>(recentEvents);
+        return s;
+    }
+
+    /**
+     * Create a snapshot but limit the number of recent events included to at most n.
+     * Use n=0 to omit events; negative n behaves like 0.
+     */
+    public synchronized Snapshot snapshotLimited(int n) {
+        Snapshot s = snapshot();
+        int limit = Math.max(0, n);
+        if (limit == 0) {
+            s.recentEvents = Collections.emptyList();
+        } else {
+            List<GameEvent> evs = new ArrayList<>();
+            int i = 0;
+            for (GameEvent e : recentEvents) {
+                evs.add(e);
+                if (++i >= limit) break;
+            }
+            s.recentEvents = evs;
+        }
         return s;
     }
 
@@ -68,6 +91,10 @@ public class GameStateStore {
         m.put("planks", inventorySummary.planks);
         m.put("foods", inventorySummary.foods);
         return m;
+    }
+
+    public synchronized InventoryFull getInventoryFull() {
+        return inventoryFull.copy();
     }
 
     public synchronized List<GameEvent> getRecentEvents(int n) {
@@ -106,6 +133,10 @@ public class GameStateStore {
         this.inventorySummary = new InventorySummary(logs, planks, foods);
     }
 
+    public synchronized void updateInventoryFull(Map<String, Integer> counts, List<SlotItem> slots) {
+        this.inventoryFull = InventoryFull.from(counts, slots);
+    }
+
     public synchronized void pushEvent(GameEvent event) {
         if (event == null) return;
         recentEvents.addFirst(event);
@@ -125,6 +156,7 @@ public class GameStateStore {
         public MovementVector movementVector;
         public String selectedItem;
         public InventorySummary inventory;
+        public InventoryFull inventoryFull;
         public List<GameEvent> recentEvents;
     }
 
@@ -141,6 +173,36 @@ public class GameStateStore {
         public int foods;
         public InventorySummary(int logs, int planks, int foods) {
             this.logs = logs; this.planks = planks; this.foods = foods;
+        }
+    }
+
+    public static class InventoryFull {
+        public Map<String, Integer> counts = new HashMap<>();
+        public List<SlotItem> slots = new ArrayList<>();
+
+        public InventoryFull copy() {
+            InventoryFull f = new InventoryFull();
+            f.counts.putAll(this.counts);
+            f.slots.addAll(this.slots); // SlotItem is immutable
+            return f;
+        }
+
+        public static InventoryFull from(Map<String, Integer> counts, List<SlotItem> slots) {
+            InventoryFull f = new InventoryFull();
+            if (counts != null) f.counts.putAll(counts);
+            if (slots != null) f.slots.addAll(slots);
+            return f;
+        }
+    }
+
+    public static class SlotItem {
+        public final int index;
+        public final String item;
+        public final int count;
+        public SlotItem(int index, String item, int count) {
+            this.index = index;
+            this.item = item;
+            this.count = count;
         }
     }
 

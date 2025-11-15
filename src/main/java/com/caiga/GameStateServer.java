@@ -26,8 +26,18 @@ public class GameStateServer {
     private GameStateServer(int port, GameStateStore store) throws IOException {
         this.store = store;
         this.server = HttpServer.create(new InetSocketAddress(port), 0);
-        this.server.createContext("/state", wrap(exchange -> respondJson(exchange, store.snapshot())));
-        this.server.createContext("/inventory", wrap(exchange -> respondJson(exchange, store.inventoryAsMap())));
+    // Limit events in /state to keep payloads small; use /events for full event queries
+    this.server.createContext("/state", wrap(exchange -> respondJson(exchange, store.snapshotLimited(64))));
+            this.server.createContext("/inventory", wrap(exchange -> {
+                var snap = store.snapshotLimited(0); // exclude events
+                var payload = new java.util.LinkedHashMap<String, Object>();
+                payload.put("summary", snap.inventory);
+                if (snap.inventoryFull != null) {
+                    payload.put("counts", snap.inventoryFull.counts);
+                    payload.put("slots", snap.inventoryFull.slots);
+                }
+                respondJson(exchange, payload);
+            }));
         this.server.createContext("/events", wrap(exchange -> {
             int n = 20;
             try {
