@@ -1,0 +1,123 @@
+{
+  "version": "1.0",
+  "description": "Default CAIGA tip bank - bundled fallback when no online dataset is available",
+  "labels": {
+    "low_health": [
+      {
+        "text": "Your health is low—eat food or find shelter.",
+        "spoiler_level": 0,
+        "priority": 10
+      },
+      {
+        "text": "Avoid combat until you heal up.",
+        "spoiler_level": 0,
+        "priority": 6
+      },
+      {
+        "text": "Golden apples provide extra healing and absorption.",
+        "spoiler_level": 1,
+        "priority": 8
+      }
+    ],
+    "low_food": [
+      {
+        "text": "You're hungry—hunt animals or harvest crops for food.",
+        "spoiler_level": 0,
+        "priority": 9
+      },
+      {
+        "text": "Cooked food restores more hunger than raw.",
+        "spoiler_level": 1,
+        "priority": 5
+      },
+      {
+        "text": "Bread is quick to make with just wheat.",
+        "spoiler_level": 1,
+        "priority": 7
+      },
+      {
+        "text": "Steak and cooked pork are among the best foods.",
+        "spoiler_level": 1,
+        "priority": 6
+      }
+    ],
+    "night_risk": [
+      {
+        "text": "Night is dangerous—seek shelter or place torches.",
+        "spoiler_level": 0,
+        "priority": 8
+      },
+      {
+        "text": "Hostile mobs spawn in darkness. Light up your area.",
+        "spoiler_level": 0,
+        "priority": 7
+      },
+      {
+        "text": "A bed lets you skip the night entirely.",
+        "spoiler_level": 1,
+        "priority": 9
+      }
+    ],
+    "mining_mode": [
+      {
+        "text": "Mining deep? Watch for lava and keep torches handy.",
+        "spoiler_level": 1,
+        "priority": 7
+      },
+      {
+        "text": "Always mine with a buddy system or mark your path.",
+        "spoiler_level": 0,
+        "priority": 5
+      },
+      {
+        "text": "Iron armor and a shield improve survival underground.",
+        "spoiler_level": 1,
+        "priority": 6
+      },
+      {
+        "text": "Diamonds are most common below Y=16.",
+        "spoiler_level": 2,
+        "priority": 8
+      }
+    ],
+    "near_resource": [
+      {
+        "text": "Resource under your crosshair—consider mining it.",
+        "spoiler_level": 0,
+        "priority": 6
+      },
+      {
+        "text": "Use the right tool for faster mining and durability.",
+        "spoiler_level": 0,
+        "priority": 5
+      },
+      {
+        "text": "Some ores require a stone pickaxe or better.",
+        "spoiler_level": 1,
+        "priority": 7
+      }
+    ],
+    "exploring": [
+      {
+        "text": "Exploring? Note your base coordinates to avoid getting lost.",
+        "spoiler_level": 0,
+        "priority": 3
+      },
+      {
+        "text": "Place torches on one side to find your way back.",
+        "spoiler_level": 0,
+        "priority": 4
+      },
+      {
+        "text": "Keep spare food and tools when venturing far.",
+        "spoiler_level": 0,
+        "priority": 5
+      },
+      {
+        "text": "Villages can provide useful loot and trading.",
+        "spoiler_level": 1,
+        "priority": 6
+      }
+    ]
+  }
+}

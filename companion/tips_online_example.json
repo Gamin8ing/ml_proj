@@ -1,0 +1,208 @@
+{
+  "version": "1.1",
+  "description": "CAIGA online tips dataset - Example for GitHub/web hosting",
+  "last_updated": "2025-11-16",
+  "labels": {
+    "low_health": [
+      {
+        "text": "Your health is critical—eat food immediately!",
+        "spoiler_level": 0,
+        "priority": 10
+      },
+      {
+        "text": "Take cover and regenerate health before engaging enemies.",
+        "spoiler_level": 0,
+        "priority": 7
+      },
+      {
+        "text": "Golden apples provide instant healing plus absorption hearts.",
+        "spoiler_level": 1,
+        "priority": 9
+      },
+      {
+        "text": "Healing potions restore health quickly in emergencies.",
+        "spoiler_level": 1,
+        "priority": 8
+      }
+    ],
+    "low_food": [
+      {
+        "text": "Hunt animals or harvest crops—you need food now.",
+        "spoiler_level": 0,
+        "priority": 10
+      },
+      {
+        "text": "Cooked meat provides more saturation than raw.",
+        "spoiler_level": 1,
+        "priority": 7
+      },
+      {
+        "text": "Baked potatoes are easy to farm and restore decent hunger.",
+        "spoiler_level": 1,
+        "priority": 6
+      },
+      {
+        "text": "Golden carrots offer the best saturation in the game.",
+        "spoiler_level": 2,
+        "priority": 5
+      },
+      {
+        "text": "Keep a stack of food in your hotbar for quick access.",
+        "spoiler_level": 0,
+        "priority": 8
+      }
+    ],
+    "night_risk": [
+      {
+        "text": "Night brings danger—find shelter or light up your area.",
+        "spoiler_level": 0,
+        "priority": 9
+      },
+      {
+        "text": "Place torches around your base to prevent mob spawns.",
+        "spoiler_level": 0,
+        "priority": 7
+      },
+      {
+        "text": "Sleep in a bed to reset your spawn and skip the night.",
+        "spoiler_level": 1,
+        "priority": 10
+      },
+      {
+        "text": "Phantoms attack if you haven't slept in 3+ days.",
+        "spoiler_level": 1,
+        "priority": 8
+      }
+    ],
+    "mining_mode": [
+      {
+        "text": "Mining at low depth? Watch for lava pools and cave-ins.",
+        "spoiler_level": 0,
+        "priority": 8
+      },
+      {
+        "text": "Always carry a water bucket when mining deep.",
+        "spoiler_level": 1,
+        "priority": 9
+      },
+      {
+        "text": "Mark your path with torches to find your way back.",
+        "spoiler_level": 0,
+        "priority": 6
+      },
+      {
+        "text": "Diamonds spawn most frequently between Y=-64 and Y=16.",
+        "spoiler_level": 2,
+        "priority": 10
+      },
+      {
+        "text": "Branch mining is efficient for finding ores.",
+        "spoiler_level": 1,
+        "priority": 7
+      },
+      {
+        "text": "Fortune III pickaxe maximizes diamond and coal yields.",
+        "spoiler_level": 2,
+        "priority": 6
+      }
+    ],
+    "near_resource": [
+      {
+        "text": "Valuable resource spotted—mine it with the right tool!",
+        "spoiler_level": 0,
+        "priority": 8
+      },
+      {
+        "text": "Iron and above require a stone pickaxe or better.",
+        "spoiler_level": 1,
+        "priority": 7
+      },
+      {
+        "text": "Silk Touch preserves blocks like ores and glass.",
+        "spoiler_level": 2,
+        "priority": 5
+      },
+      {
+        "text": "Smelt ores in a furnace to get ingots.",
+        "spoiler_level": 0,
+        "priority": 6
+      }
+    ],
+    "exploring": [
+      {
+        "text": "Write down your base coordinates before exploring far.",
+        "spoiler_level": 0,
+        "priority": 5
+      },
+      {
+        "text": "Place torches on the right wall to navigate caves easily.",
+        "spoiler_level": 0,
+        "priority": 6
+      },
+      {
+        "text": "Bring extra food, torches, and tools on long journeys.",
+        "spoiler_level": 0,
+        "priority": 7
+      },
+      {
+        "text": "Villages offer loot, trading, and a safe place to rest.",
+        "spoiler_level": 1,
+        "priority": 8
+      },
+      {
+        "text": "Map out interesting landmarks with a map and compass.",
+        "spoiler_level": 1,
+        "priority": 4
+      },
+      {
+        "text": "Elytra and fireworks make exploration much faster.",
+        "spoiler_level": 2,
+        "priority": 3
+      }
+    ],
+    "combat": [
+      {
+        "text": "Keep your shield up when facing skeletons and creepers.",
+        "spoiler_level": 0,
+        "priority": 9
+      },
+      {
+        "text": "Critical hits deal extra damage—jump and attack.",
+        "spoiler_level": 1,
+        "priority": 7
+      },
+      {
+        "text": "Enchanted armor significantly improves survivability.",
+        "spoiler_level": 1,
+        "priority": 8
+      },
+      {
+        "text": "Potions of strength boost melee damage considerably.",
+        "spoiler_level": 2,
+        "priority": 6
+      }
+    ],
+    "building": [
+      {
+        "text": "Plan your base layout before committing resources.",
+        "spoiler_level": 0,
+        "priority": 5
+      },
+      {
+        "text": "Light up your base interior to prevent mob spawns.",
+        "spoiler_level": 0,
+        "priority": 7
+      },
+      {
+        "text": "Use different block types for visual variety.",
+        "spoiler_level": 0,
+        "priority": 3
+      },
+      {
+        "text": "Stairs and slabs add depth and detail to builds.",
+        "spoiler_level": 1,
+        "priority": 4
+      }
+    ]
+  }
+}

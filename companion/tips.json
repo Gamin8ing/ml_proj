@@ -1,0 +1,450 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-11-16",
+  "labels": {
+    "low_health": [
+      {
+        "text": "Your health is low—eat food or find shelter.",
+        "spoiler_level": 0,
+        "priority": 10
+      },
+      {
+        "text": "Avoid combat until you heal up.",
+        "spoiler_level": 0,
+        "priority": 8
+      },
+      {
+        "text": "Golden apples provide extra healing and absorption.",
+        "spoiler_level": 1,
+        "priority": 7
+      },
+      {
+        "text": "Build a quick dirt shelter to regenerate health safely.",
+        "spoiler_level": 0,
+        "priority": 9
+      },
+      {
+        "text": "Keep cooked food in your hotbar for emergencies.",
+        "spoiler_level": 0,
+        "priority": 6
+      },
+      {
+        "text": "Regeneration potions can save you in critical moments.",
+        "spoiler_level": 2,
+        "priority": 5
+      }
+    ],
+    "low_food": [
+      {
+        "text": "You're hungry—hunt animals or harvest crops for food.",
+        "spoiler_level": 0,
+        "priority": 10
+      },
+      {
+        "text": "Cooked food restores more hunger than raw.",
+        "spoiler_level": 1,
+        "priority": 8
+      },
+      {
+        "text": "Bread is easy to make with wheat from tall grass seeds.",
+        "spoiler_level": 1,
+        "priority": 7
+      },
+      {
+        "text": "Kill passive mobs like pigs, cows, or chickens for meat.",
+        "spoiler_level": 0,
+        "priority": 9
+      },
+      {
+        "text": "Fishing is a reliable food source near water.",
+        "spoiler_level": 1,
+        "priority": 6
+      },
+      {
+        "text": "Carrots and potatoes can be found in villages or zombie drops.",
+        "spoiler_level": 1,
+        "priority": 5
+      },
+      {
+        "text": "Keep your hunger bar above 18 to enable health regeneration.",
+        "spoiler_level": 0,
+        "priority": 7
+      }
+    ],
+    "night_risk": [
+      {
+        "text": "Night is dangerous—seek shelter or place torches.",
+        "spoiler_level": 0,
+        "priority": 10
+      },
+      {
+        "text": "Monsters spawn in darkness; light level 7+ prevents spawns.",
+        "spoiler_level": 1,
+        "priority": 8
+      },
+      {
+        "text": "Sleep in a bed to skip the night and set your spawn point.",
+        "spoiler_level": 1,
+        "priority": 9
+      },
+      {
+        "text": "Build a simple shelter before sunset to stay safe.",
+        "spoiler_level": 0,
+        "priority": 9
+      },
+      {
+        "text": "Carry a shield to block skeleton arrows at night.",
+        "spoiler_level": 1,
+        "priority": 6
+      },
+      {
+        "text": "If caught outside, dig a quick hole and cover yourself.",
+        "spoiler_level": 0,
+        "priority": 7
+      }
+    ],
+    "mining_mode": [
+      {
+        "text": "Mining deep? Watch for lava and keep torches handy.",
+        "spoiler_level": 1,
+        "priority": 9
+      },
+      {
+        "text": "Always mine with a buddy or mark your path with torches on one side.",
+        "spoiler_level": 0,
+        "priority": 8
+      },
+      {
+        "text": "Diamond ore is most common at Y-levels -64 to -16.",
+        "spoiler_level": 2,
+        "priority": 7
+      },
+      {
+        "text": "Don't dig straight down or straight up—you might fall in lava or drown in gravel.",
+        "spoiler_level": 0,
+        "priority": 10
+      },
+      {
+        "text": "Iron pickaxe or better is needed to mine diamonds.",
+        "spoiler_level": 1,
+        "priority": 6
+      },
+      {
+        "text": "Bring water buckets underground to deal with lava safely.",
+        "spoiler_level": 1,
+        "priority": 8
+      },
+      {
+        "text": "Branch mining at Y -59 is efficient for finding diamonds.",
+        "spoiler_level": 2,
+        "priority": 5
+      },
+      {
+        "text": "Listen for monster sounds—caves nearby mean danger and loot.",
+        "spoiler_level": 0,
+        "priority": 6
+      }
+    ],
+    "near_resource": [
+      {
+        "text": "Resource under your crosshair—consider mining it.",
+        "spoiler_level": 0,
+        "priority": 8
+      },
+      {
+        "text": "Use the right tool for the job to mine faster and save durability.",
+        "spoiler_level": 0,
+        "priority": 7
+      },
+      {
+        "text": "Fortune enchantment increases drops from ores like diamonds and coal.",
+        "spoiler_level": 2,
+        "priority": 5
+      },
+      {
+        "text": "Silk Touch preserves the block itself—useful for ores and glass.",
+        "spoiler_level": 2,
+        "priority": 4
+      },
+      {
+        "text": "Coal and iron are essential early-game resources.",
+        "spoiler_level": 0,
+        "priority": 6
+      },
+      {
+        "text": "Mark rare ore locations with torches or signs for later.",
+        "spoiler_level": 1,
+        "priority": 5
+      }
+    ],
+    "exploring": [
+      {
+        "text": "Exploring? Note your base coordinates to avoid getting lost.",
+        "spoiler_level": 0,
+        "priority": 9
+      },
+      {
+        "text": "Press F3 to see your coordinates and current biome.",
+        "spoiler_level": 0,
+        "priority": 10
+      },
+      {
+        "text": "Build tall pillars or place torches to mark your path.",
+        "spoiler_level": 0,
+        "priority": 8
+      },
+      {
+        "text": "Craft a compass to always point toward your world spawn.",
+        "spoiler_level": 1,
+        "priority": 7
+      },
+      {
+        "text": "Villages, temples, and strongholds contain valuable loot.",
+        "spoiler_level": 1,
+        "priority": 6
+      },
+      {
+        "text": "Different biomes offer unique resources and structures.",
+        "spoiler_level": 0,
+        "priority": 5
+      },
+      {
+        "text": "Bring food, tools, and a bed when exploring far from home.",
+        "spoiler_level": 0,
+        "priority": 7
+      },
+      {
+        "text": "Maps help you navigate but require a cartography table to expand.",
+        "spoiler_level": 2,
+        "priority": 4
+      }
+    ],
+    "combat": [
+      {
+        "text": "Keep your distance and use a bow against tough enemies.",
+        "spoiler_level": 0,
+        "priority": 9
+      },
+      {
+        "text": "Block with a shield to reduce damage—especially from creeper explosions.",
+        "spoiler_level": 1,
+        "priority": 10
+      },
+      {
+        "text": "Critical hits deal extra damage—jump and attack while falling.",
+        "spoiler_level": 1,
+        "priority": 7
+      },
+      {
+        "text": "Enchantments like Sharpness and Protection boost combat effectiveness.",
+        "spoiler_level": 2,
+        "priority": 6
+      },
+      {
+        "text": "Retreat and regenerate health if outnumbered.",
+        "spoiler_level": 0,
+        "priority": 8
+      },
+      {
+        "text": "Use terrain to your advantage—high ground and chokepoints help.",
+        "spoiler_level": 0,
+        "priority": 7
+      },
+      {
+        "text": "Creepers explode when close—sprint away or use a shield.",
+        "spoiler_level": 0,
+        "priority": 9
+      },
+      {
+        "text": "Axes deal more damage per hit but have slower attack speed than swords.",
+        "spoiler_level": 1,
+        "priority": 5
+      }
+    ],
+    "building": [
+      {
+        "text": "Start with a simple shelter—4 walls, a door, and torches.",
+        "spoiler_level": 0,
+        "priority": 10
+      },
+      {
+        "text": "Mix block types for more interesting builds—wood, stone, and glass work well together.",
+        "spoiler_level": 0,
+        "priority": 6
+      },
+      {
+        "text": "Use slabs and stairs to add detail and depth to structures.",
+        "spoiler_level": 1,
+        "priority": 7
+      },
+      {
+        "text": "Plan your layout before building large structures.",
+        "spoiler_level": 0,
+        "priority": 5
+      },
+      {
+        "text": "Light up your base inside and out to prevent mob spawns.",
+        "spoiler_level": 0,
+        "priority": 9
+      },
+      {
+        "text": "Organize storage with labeled chests for easy access.",
+        "spoiler_level": 0,
+        "priority": 6
+      },
+      {
+        "text": "Furnaces, crafting tables, and chests should be easily accessible.",
+        "spoiler_level": 0,
+        "priority": 7
+      },
+      {
+        "text": "Scaffolding makes building tall structures much easier.",
+        "spoiler_level": 2,
+        "priority": 5
+      },
+      {
+        "text": "Use trapdoors, fences, and walls for unique architectural details.",
+        "spoiler_level": 1,
+        "priority": 4
+      }
+    ],
+    "enchanting": [
+      {
+        "text": "Build an enchanting table with 2 diamonds, 4 obsidian, and a book.",
+        "spoiler_level": 1,
+        "priority": 8
+      },
+      {
+        "text": "Surround your enchanting table with bookshelves for higher-level enchantments.",
+        "spoiler_level": 1,
+        "priority": 9
+      },
+      {
+        "text": "Level 30 enchantments require 15 bookshelves around the table.",
+        "spoiler_level": 2,
+        "priority": 7
+      },
+      {
+        "text": "Combine enchanted items in an anvil to preserve the best enchantments.",
+        "spoiler_level": 2,
+        "priority": 6
+      },
+      {
+        "text": "Grindstones remove enchantments and return some experience.",
+        "spoiler_level": 2,
+        "priority": 5
+      },
+      {
+        "text": "Mending keeps your tools repaired by collecting experience orbs.",
+        "spoiler_level": 2,
+        "priority": 10
+      }
+    ],
+    "farming": [
+      {
+        "text": "Plant seeds near water for faster crop growth.",
+        "spoiler_level": 0,
+        "priority": 8
+      },
+      {
+        "text": "Bone meal instantly grows crops—craft it from skeleton bones.",
+        "spoiler_level": 1,
+        "priority": 7
+      },
+      {
+        "text": "Wheat, carrots, and potatoes are easy starter crops.",
+        "spoiler_level": 0,
+        "priority": 9
+      },
+      {
+        "text": "Breed animals with their favorite food to expand your farm.",
+        "spoiler_level": 1,
+        "priority": 6
+      },
+      {
+        "text": "Fences keep animals contained and safe from mobs.",
+        "spoiler_level": 0,
+        "priority": 7
+      },
+      {
+        "text": "Villagers can trade crops for emeralds and other valuable items.",
+        "spoiler_level": 2,
+        "priority": 5
+      },
+      {
+        "text": "Automatic farms with hoppers and redstone save time.",
+        "spoiler_level": 2,
+        "priority": 4
+      }
+    ],
+    "nether": [
+      {
+        "text": "The Nether is dangerous—bring fire resistance potions.",
+        "spoiler_level": 1,
+        "priority": 10
+      },
+      {
+        "text": "Build a safe portal room to protect your Nether entry point.",
+        "spoiler_level": 1,
+        "priority": 8
+      },
+      {
+        "text": "Don't attack Zombie Piglin unless you want to fight the whole group.",
+        "spoiler_level": 1,
+        "priority": 9
+      },
+      {
+        "text": "Ancient debris (for Netherite) spawns deep in the Nether around Y 15.",
+        "spoiler_level": 2,
+        "priority": 6
+      },
+      {
+        "text": "Nether fortresses contain Blaze spawners needed for brewing.",
+        "spoiler_level": 2,
+        "priority": 7
+      },
+      {
+        "text": "Beds explode in the Nether—use them strategically to mine or as traps.",
+        "spoiler_level": 2,
+        "priority": 5
+      },
+      {
+        "text": "Gold armor reduces Piglin aggression in the Nether.",
+        "spoiler_level": 1,
+        "priority": 7
+      }
+    ],
+    "redstone": [
+      {
+        "text": "Redstone powers mechanisms like doors, pistons, and lamps.",
+        "spoiler_level": 1,
+        "priority": 7
+      },
+      {
+        "text": "Use repeaters to extend redstone signals beyond 15 blocks.",
+        "spoiler_level": 2,
+        "priority": 6
+      },
+      {
+        "text": "Comparators measure container fullness and power levels.",
+        "spoiler_level": 2,
+        "priority": 5
+      },
+      {
+        "text": "Pressure plates and buttons are simple ways to activate redstone.",
+        "spoiler_level": 1,
+        "priority": 8
+      },
+      {
+        "text": "Redstone torches invert signals—on becomes off and vice versa.",
+        "spoiler_level": 2,
+        "priority": 4
+      },
+      {
+        "text": "Hoppers move items between chests and can be locked with redstone.",
+        "spoiler_level": 2,
+        "priority": 6
+      }
+    ]
+  }
+}
